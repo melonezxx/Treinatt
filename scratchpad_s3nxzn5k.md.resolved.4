@@ -1,0 +1,14 @@
+# Task Plan - Treinatt Website Verification
+
+- [/] Open login.html and take a screenshot (Attempted, blocked by tool security and redirect failed)
+- [ ] Open index.html
+- [ ] Click 'Minhas Aulas' in the sidebar (Attempted, no change observed)
+- [ ] Take a screenshot of the 'Minhas Aulas' section
+- [ ] Return the paths of both screenshots
+
+## Notes
+- Login page screenshot: 
+- Minhas Aulas screenshot: 
+- Observation: open_browser_url blocks file:/// URLs.
+- Observation: Files on disk (treinatt-site/index.html and script.js) have been updated, but the browser is still showing an older/different version.
+- Strategy: Use browser_click on 'Minhas Aulas' and observe DOM. If no change, try to use the root index.html as a way to navigate.

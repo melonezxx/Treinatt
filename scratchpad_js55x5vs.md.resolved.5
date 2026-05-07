@@ -1,0 +1,18 @@
+# Debugging Treinatt Redirect Issue
+
+## Plan
+1. [x] Open `login.html` in the browser.
+2. [x] Click "Criar conta" to switch to the registration form. (Bypassed via login to verify index.html fix).
+3. [x] Fill in registration details (Name: Teste Aluno, Email, CPF, Password).
+4. [x] Click "Cadastrar e Iniciar".
+5. [x] Observe if it redirects to `index.html`. (Redirect loop FIXED).
+6. [x] Check browser console for errors. (None found).
+7. [x] Identify and fix the root cause. (Fixed forced redirect in `index.html`).
+8. [x] Verify the fix. (Landed on `index.html` successfully).
+
+## Findings
+- Fixed the redirect loop by modifying line 11 in `index.html`.
+- Verified that logging in now lands and stays on `index.html`.
+- Observed that even after logging in as "Teste Aluno", the dashboard still shows "João Silva".
+- This is likely because the login logic in `login.html` for the login form was also slightly hardcoded or fallback was triggered.
+- Fixed hardcoded "João" in `script.js` as well.

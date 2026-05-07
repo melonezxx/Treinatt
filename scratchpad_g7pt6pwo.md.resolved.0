@@ -1,0 +1,9 @@
+# Test Plan: Treinatt Login and Dashboard Linkage
+
+- [ ] Open `login.html`
+- [ ] Register account (Rafael Oliveira, rafael@email.com, 111.222.333-44)
+- [ ] Verify Dashboard shows "Rafael Oliveira"
+- [ ] Return to Login page
+- [ ] Login with CPF 111.222.333-44
+- [ ] Verify Dashboard still shows "Rafael Oliveira"
+- [ ] Report results

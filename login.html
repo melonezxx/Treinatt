@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinatt | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1A1A1A 0%, #333333 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .login-wrapper {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .login-logo {
+            margin-bottom: 40px;
+        }
+        .login-logo h1 {
+            font-size: 36px;
+            letter-spacing: 3px;
+            color: #1A1A1A;
+            margin-bottom: 5px;
+        }
+        .login-logo span {
+            color: var(--primary-red);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #EEE;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+        .form-group input:focus {
+            border-color: var(--primary-red);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(227, 27, 35, 0.1);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        .btn-login:hover {
+            background: #1A1A1A;
+            transform: translateY(-2px);
+        }
+        .switch-form {
+            margin-top: 25px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .switch-form a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .hidden {
+            display: none;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2E7D32;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .notification .icon {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="success-notification" class="notification">
+        <span class="icon">✅</span>
+        <span id="notification-msg">Conta criada com sucesso!</span>
+    </div>
+    <div class="login-wrapper">
+        <!-- Login Form -->
+        <div class="login-card" id="login-container">
+            <div class="login-logo">
+                <h1>TREINATT</h1>
+                <span>TREINAMENTO PROFISSIONAL</span>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>E-mail ou CPF</label>
+                    <input type="text" id="login-identifier" placeholder="Digite seu acesso" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-login">Entrar no Portal</button>
+            </form>
+            <p class="switch-form">Não tem uma conta? <a href="#" id="go-to-register">Criar conta</a></p>
+        </div>
+
+        <!-- Register Form -->
+        <div class="login-card hidden" id="register-container">
+            <div class="login-logo">
+                <h1>TREINATT</h1>
+                <span>TREINAMENTO PROFISSIONAL</span>
+            </div>
+            <form id="register-form">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="reg-name" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="reg-email" placeholder="email@exemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" id="reg-cpf" placeholder="000.000.000-00" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" placeholder="Crie uma senha forte" required>
+                </div>
+                <button type="submit" class="btn-login">Cadastrar e Iniciar</button>
+            </form>
+            <p class="switch-form">Já tem uma conta? <a href="#" id="go-to-login">Fazer login</a></p>
+        </div>
+    </div>
+
+    <script>
+        const loginContainer = document.getElementById('login-container');
+        const registerContainer = document.getElementById('register-container');
+        const goToRegister = document.getElementById('go-to-register');
+        const goToLogin = document.getElementById('go-to-login');
+
+        goToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginContainer.classList.add('hidden');
+            registerContainer.classList.remove('hidden');
+        });
+
+        goToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerContainer.classList.add('hidden');
+            loginContainer.classList.remove('hidden');
+        });
+
+        // Helper to remove dots and dashes
+        function sanitizeCpf(cpf) {
+            return cpf.replace(/\D/g, ''); // Removes everything that is not a number
+        }
+
+        // Mock "Database" initialization
+        if (!localStorage.getItem('treinatt_users_db')) {
+            localStorage.setItem('treinatt_users_db', JSON.stringify({
+                '00000000000': { name: 'João Silva', email: 'joao@treinatt.com', status: 'Operador em Treinamento', isNew: false }
+            }));
+            localStorage.setItem('treinatt_emails_db', JSON.stringify({
+                'joao@treinatt.com': '00000000000'
+            }));
+        }
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputVal = document.getElementById('login-identifier').value.toLowerCase().trim();
+            const usersDb = JSON.parse(localStorage.getItem('treinatt_users_db')) || {};
+            const emailsDb = JSON.parse(localStorage.getItem('treinatt_emails_db')) || {};
+            
+            console.log('Login attempt with:', inputVal);
+            
+            let foundUser = null;
+
+            // 1. Try direct CPF lookup
+            const sanitizedCpf = sanitizeCpf(inputVal);
+            if (usersDb[sanitizedCpf]) {
+                foundUser = usersDb[sanitizedCpf];
+                console.log('Found by CPF');
+            } 
+            // 2. Try Email mapping lookup
+            else if (inputVal.includes('@')) {
+                const cpfFromEmail = emailsDb[inputVal];
+                if (cpfFromEmail && usersDb[cpfFromEmail]) {
+                    foundUser = usersDb[cpfFromEmail];
+                    console.log('Found by Email mapping');
+                }
+                // 3. Robust fallback: Search all users for this email
+                else {
+                    console.log('Mapping failed, searching database...');
+                    for (const cpf in usersDb) {
+                        if (usersDb[cpf].email && usersDb[cpf].email.toLowerCase() === inputVal) {
+                            foundUser = usersDb[cpf];
+                            console.log('Found by exhaustive email search');
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (foundUser) {
+                console.log('Logged in as:', foundUser.name);
+                localStorage.setItem('treinatt_user', JSON.stringify(foundUser));
+                window.location.href = './index.html';
+            } else {
+                console.error('User not found');
+                alert('Acesso não encontrado. Verifique seu E-mail ou CPF.');
+            }
+        });
+
+
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value.toLowerCase().trim();
+            const rawCpf = document.getElementById('reg-cpf').value;
+            const cpf = sanitizeCpf(rawCpf);
+            
+            const newUser = { name, email, status: 'Novo Aluno', isNew: true };
+            const usersDb = JSON.parse(localStorage.getItem('treinatt_users_db')) || {};
+            const emailsDb = JSON.parse(localStorage.getItem('treinatt_emails_db')) || {};
+            
+            // Save immediately
+            usersDb[cpf] = newUser;
+            emailsDb[email] = cpf;
+            
+            localStorage.setItem('treinatt_users_db', JSON.stringify(usersDb));
+            localStorage.setItem('treinatt_emails_db', JSON.stringify(emailsDb));
+            
+            // Success feedback
+            const notification = document.getElementById('success-notification');
+            notification.classList.add('show');
+            setTimeout(() => notification.classList.remove('show'), 4000);
+            
+            // Switch back to login
+            registerContainer.classList.add('hidden');
+            loginContainer.classList.remove('hidden');
+            e.target.reset();
+        });
+    </script>
+
+
+
+
+</body>
+</html>

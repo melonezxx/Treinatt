@@ -1,0 +1,17 @@
+# Debugging Treinatt Redirect Issue
+
+## Plan
+1. [x] Open `login.html` in the browser.
+2. [x] Click "Criar conta" to switch to the registration form.
+3. [x] Fill in registration details (Name: Teste Aluno, Email, CPF, Password).
+4. [x] Click "Cadastrar e Iniciar".
+5. [x] Observe if it redirects to `index.html`. (It redirects, but `index.html` redirects back to `login.html`).
+6. [x] Check browser console for errors. (None found).
+7. [ ] Identify and fix the root cause. (ROOT CAUSE FOUND: line 11 in `index.html` forces redirect to `login.html`).
+8. [ ] Verify the fix.
+
+## Findings
+- Successfully reached the registration form and submitted it.
+- Observed that `index.html` contains `<script>window.location.href = 'login.html';</script>` on line 11.
+- This causes an immediate redirect back to login, making it look like the login/registration failed.
+- Plan: Modify `index.html` to only redirect if the user is NOT logged in.
